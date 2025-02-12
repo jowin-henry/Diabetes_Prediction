@@ -1,73 +1,121 @@
-Diabetes Prediction using SVM
+# Diabetes Prediction
 
-This repository contains a machine learning model to predict diabetes using the PIMA Diabetes dataset. The model is built using Python and scikit-learn, employing a Support Vector Machine (SVM) classifier with a linear kernel.
+This project aims to predict whether an individual has diabetes based on their health parameters using machine learning. The model is built using the PIMA Indians Diabetes Database and is implemented in Python with the help of popular libraries like `pandas`, `numpy`, `scikit-learn`, and `matplotlib`.
 
-Dataset
+## Table of Contents
 
-The dataset used is the PIMA Diabetes Dataset, which consists of medical predictor variables and an outcome label:
+- [Installation](#installation)
+- [Usage](#usage)
+- [Data Collection](#data-collection)
+- [Model Training](#model-training)
+- [Model Evaluation](#model-evaluation)
+- [Prediction System](#prediction-system)
+- [Technologies Used](#technologies-used)
 
-0 - Non-Diabetic
 
-1 - Diabetic
+## Installation
 
-Installation & Setup
+To get started, clone this repository and install the required dependencies using the following commands:
 
-Prerequisites
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/diabetes-prediction.git
+   cd diabetes-prediction
+2. Install dependencies:
+     ```bash
+      pip install -r requirements.txt
 
-Ensure you have the following installed:
+## Usage
 
-Python 3.x
+This project provides a machine learning model for predicting diabetes in a person based on the following health parameters:
 
-Jupyter Notebook or Google Colab
+Number of pregnancies
+Plasma glucose concentration
+Diastolic blood pressure
+Triceps skinfold thickness
+Insulin level
+Body mass index (BMI)
+Diabetes pedigree function
+Age
 
-Required Python Libraries: numpy, pandas, scikit-learn
+You can use the model to predict diabetes by providing input data through the Python script.
 
-Clone Repository
 
-git clone https://github.com/yourusername/diabetes-prediction.git
-cd diabetes-prediction
 
-Install Dependencies
+  ## Data Collection
+  
+This project uses the PIMA Indians Diabetes Database, which contains medical data of female PIMA Indians who are at least 21 years old. The dataset includes the following columns:
 
-pip install numpy pandas scikit-learn
+Pregnancies: Number of pregnancies
+Glucose: Plasma glucose concentration
+BloodPressure: Diastolic blood pressure
+SkinThickness: Triceps skinfold thickness
+Insulin: 2-Hour serum insulin
+BMI: Body mass index
+DiabetesPedigreeFunction: Diabetes pedigree function
+Age: Age of the person
+Outcome: 1 if the person has diabetes, 0 otherwise
+The dataset is loaded from a CSV file and analyzed using pandas.
 
-Usage
+## Model Training
 
-Running the Model
+We use a Support Vector Machine (SVM) classifier to train the model. The SVM is trained on the features of the dataset (excluding the 'Outcome' column) after the data is standardized using `StandardScaler`. The dataset is split into training and testing sets, and the model is trained on the training data.
 
-Load the Dataset - The script reads the diabetes.csv file into a pandas DataFrame.
+```python
+from sklearn import svm
 
-Preprocessing - Data is standardized using StandardScaler.
+# Creating an SVM classifier with a linear kernel
+classifier = svm.SVC(kernel='linear')
 
-Model Training - A Support Vector Machine (SVM) model is trained using a linear kernel.
+# Training the model with the training data
+classifier.fit(X_train, Y_train)
+```
+## Model Evaluation
+After training the model, its performance is evaluated using accuracy scores on both the training and test data. The accuracy score is calculated by comparing the model's predictions to the actual labels of the data.
+```python
+from sklearn.metrics import accuracy_score
 
-Evaluation - The model is evaluated on training and test data.
+# Making predictions on training data
+X_train_prediction = classifier.predict(X_train)
+training_data_accuracy = accuracy_score(X_train_prediction, Y_train)
 
-Prediction - A sample input is tested for diabetes prediction.
+# Making predictions on test data
+X_test_prediction = classifier.predict(X_test)
+test_data_accuracy = accuracy_score(X_test_prediction, Y_test)
 
-To run the script:
+# Printing accuracy scores
+print("Training Data Accuracy:", training_data_accuracy)
+print("Test Data Accuracy:", test_data_accuracy)
+```
+## Prediction System
+A prediction system is included that allows the user to input their health parameters and predict whether they are diabetic or not. The input data is standardized and passed through the trained model to generate the prediction.
 
-python diabetes_prediction.py
+```python
+# Example input data
+input_data = (5, 166, 72, 19, 175, 25.8, 0.587, 51)
 
-Model Performance
+# Converting input data to a NumPy array
+input_data_as_numpy_array = np.asarray(input_data)
 
-The model achieves a reasonable accuracy on both training and test datasets.
+# Reshaping the array as we are predicting for one instance
+input_data_reshaped = input_data_as_numpy_array.reshape(1, -1)
 
-Accuracy is displayed after training the model.
+# Standardizing the input data
+std_data = scaler.transform(input_data_reshaped)
 
-Sample Prediction
+# Making a prediction
+prediction = classifier.predict(std_data)
 
-The script includes a test case:
+# Displaying the result
+if prediction[0] == 0:
+    print("The person is not diabetic")
+else:
+    print("The person is diabetic")
 
-input_data = (5,166,72,19,175,25.8,0.587,51)
-
-After preprocessing and prediction, it will output whether the person is diabetic or not.
-
-Contributions
-
-Feel free to contribute by opening an issue or submitting a pull request.
-
-License
-
-This project is licensed under the MIT License.
-
+```
+## Technologies Used
+Python
+scikit-learn (for machine learning)
+pandas (for data manipulation)
+numpy (for numerical operations)
+StandardScaler (for data preprocessing)
