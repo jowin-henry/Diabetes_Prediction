@@ -19,7 +19,7 @@ To get started, clone this repository and install the required dependencies usin
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/diabetes-prediction.git
+   https://github.com/jowin-henry/Diabetes_Prediction.git
    cd diabetes-prediction
 2. Install dependencies:
      ```bash
