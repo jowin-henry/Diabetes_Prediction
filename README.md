@@ -29,14 +29,14 @@ To get started, clone this repository and install the required dependencies usin
 
 This project provides a machine learning model for predicting diabetes in a person based on the following health parameters:
 
-Number of pregnancies
-Plasma glucose concentration
-Diastolic blood pressure
-Triceps skinfold thickness
-Insulin level
-Body mass index (BMI)
-Diabetes pedigree function
-Age
+- Number of pregnancies
+- Plasma glucose concentration
+- Diastolic blood pressure
+- Triceps skinfold thickness
+- Insulin level
+- Body mass index (BMI)
+- Diabetes pedigree function
+- Age
 
 You can use the model to predict diabetes by providing input data through the Python script.
 
