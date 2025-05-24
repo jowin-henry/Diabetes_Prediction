@@ -114,8 +114,8 @@ else:
 
 ```
 ## Technologies Used
-Python
-scikit-learn (for machine learning)
-pandas (for data manipulation)
-numpy (for numerical operations)
-StandardScaler (for data preprocessing)
+- Python
+- scikit-learn (for machine learning)
+- pandas (for data manipulation)
+- numpy (for numerical operations)
+- StandardScaler (for data preprocessing)
